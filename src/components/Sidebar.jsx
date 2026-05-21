@@ -3,9 +3,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import { 
-  FiHome, FiFileText, FiHelpCircle, FiCheckSquare, 
-  FiActivity, FiCpu, FiCalendar, FiBell, FiAward, 
-  FiUser, FiSettings, FiLogOut, FiMenu, FiX,
+  FiHome, FiFileText, FiCpu, FiHelpCircle, FiCheckSquare, 
+  FiActivity, FiSettings, FiLogOut, FiMenu, FiX,
   FiBarChart2, FiBookOpen
 } from 'react-icons/fi';
 
@@ -13,6 +12,7 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
+  // Remove unused 'user' variable if not used
 
   const menuItems = [
     { name: 'Dashboard', icon: FiHome, path: '/dashboard' },
@@ -39,6 +39,7 @@ const Sidebar = () => {
   };
 
   return (
+    // Rest of your sidebar code remains same
     <>
       {/* Animated Hamburger Menu Button */}
       <motion.button
@@ -93,7 +94,6 @@ const Sidebar = () => {
             className="fixed left-0 top-0 h-full w-72 bg-white dark:bg-gray-800 shadow-2xl z-50 overflow-y-auto"
           >
             <div className="flex flex-col h-full">
-              {/* Sidebar Header */}
               <div className="p-6 border-b border-gray-200 dark:border-gray-700">
                 <div className="flex justify-between items-center">
                   <div>
@@ -106,7 +106,6 @@ const Sidebar = () => {
                 </div>
               </div>
 
-              {/* Navigation Menu */}
               <nav className="flex-1 p-4 space-y-1">
                 {menuItems.map((item) => {
                   const Icon = item.icon;
@@ -130,7 +129,6 @@ const Sidebar = () => {
                 })}
               </nav>
 
-              {/* Logout Button */}
               <div className="p-4 border-t border-gray-200 dark:border-gray-700">
                 <button
                   onClick={handleLogout}

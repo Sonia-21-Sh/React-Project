@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FiPlus, FiEdit2, FiTrash2, FiCalendar, FiFlag, 
-  FiClock, FiCheckCircle, FiCircle, FiDragHandle,
-  FiAlertCircle, FiTrendingUp, FiBarChart2
+  FiClock, FiCheckCircle, FiCircle
 } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiSearch, FiFilter, FiTrendingUp, FiUsers, FiBookOpen, FiAward } from 'react-icons/fi';
+import { FiSearch, FiFilter, FiTrendingUp, FiUsers, FiAward } from 'react-icons/fi';
 import { useStudents } from '../hooks/useStudents';
 import StudentCard from '../components/StudentCard';
 import LoadingSkeleton from '../components/LoadingSkeleton';

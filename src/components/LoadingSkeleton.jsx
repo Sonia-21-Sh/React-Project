@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+// remove: import { motion } from 'framer-motion';
 
 const LoadingSkeleton = () => {
   return (

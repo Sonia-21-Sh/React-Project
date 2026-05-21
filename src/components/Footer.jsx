@@ -51,28 +51,34 @@ const Footer = () => {
             <div className="flex space-x-4 mt-6">
               <motion.a
                 whileHover={{ scale: 1.1, y: -3 }}
-                href="#"
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition bg-gray-800 p-2 rounded-full"
               >
                 <FiGithub size={20} />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1, y: -3 }}
-                href="#"
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition bg-gray-800 p-2 rounded-full"
               >
                 <FiTwitter size={20} />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1, y: -3 }}
-                href="#"
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition bg-gray-800 p-2 rounded-full"
               >
                 <FiLinkedin size={20} />
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1, y: -3 }}
-                href="#"
+                href="mailto:support@3dlearn.com"
                 className="text-gray-400 hover:text-white transition bg-gray-800 p-2 rounded-full"
               >
                 <FiMail size={20} />
@@ -84,17 +90,36 @@ const Footer = () => {
           <motion.div variants={itemVariants}>
             <h4 className="font-semibold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-3">
-              {['Home', 'Features', 'About', 'Contact', 'Pricing'].map((item) => (
-                <li key={item}>
-                  <Link 
-                    to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                    className="text-gray-400 hover:text-white transition flex items-center space-x-2 group"
-                  >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-purple-500 transition-all"></span>
-                    <span>{item}</span>
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link to="/" className="text-gray-400 hover:text-white transition flex items-center space-x-2 group">
+                  <span className="w-0 group-hover:w-2 h-0.5 bg-purple-500 transition-all"></span>
+                  <span>Home</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/features" className="text-gray-400 hover:text-white transition flex items-center space-x-2 group">
+                  <span className="w-0 group-hover:w-2 h-0.5 bg-purple-500 transition-all"></span>
+                  <span>Features</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/students" className="text-gray-400 hover:text-white transition flex items-center space-x-2 group">
+                  <span className="w-0 group-hover:w-2 h-0.5 bg-purple-500 transition-all"></span>
+                  <span>Students</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-gray-400 hover:text-white transition flex items-center space-x-2 group">
+                  <span className="w-0 group-hover:w-2 h-0.5 bg-purple-500 transition-all"></span>
+                  <span>About</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-gray-400 hover:text-white transition flex items-center space-x-2 group">
+                  <span className="w-0 group-hover:w-2 h-0.5 bg-purple-500 transition-all"></span>
+                  <span>Contact</span>
+                </Link>
+              </li>
             </ul>
           </motion.div>
 
@@ -102,10 +127,10 @@ const Footer = () => {
           <motion.div variants={itemVariants}>
             <h4 className="font-semibold text-lg mb-4">Support</h4>
             <ul className="space-y-3 text-gray-400">
-              <li><a href="#" className="hover:text-white transition">Help Center</a></li>
-              <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-white transition">FAQ</a></li>
+              <li><a href="/help" className="hover:text-white transition">Help Center</a></li>
+              <li><Link to="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:text-white transition">Terms of Service</Link></li>
+              <li><Link to="/faq" className="hover:text-white transition">FAQ</Link></li>
             </ul>
           </motion.div>
 
