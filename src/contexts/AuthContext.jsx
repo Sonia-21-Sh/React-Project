@@ -27,24 +27,17 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  // Generate random OTP
-  const generateOTP = () => {
-    return Math.floor(100000 + Math.random() * 900000).toString();
-  };
-
   // Signup - sends OTP
   const signup = async (userData) => {
     try {
-      // Demo ke liye fixed OTP 123456 use karo
       const otp = "123456";
       const pendingUser = {
         ...userData,
         otp,
-        otpExpiry: Date.now() + 300000 // 5 minutes expiry
+        otpExpiry: Date.now() + 300000
       };
       localStorage.setItem('pendingUser', JSON.stringify(pendingUser));
       
-      // Popup mein OTP dikhao
       alert(`📧 Your OTP is: ${otp}\n\nUse this OTP to verify your email.`);
       console.log(`📧 OTP for ${userData.email}: ${otp}`);
       
@@ -97,7 +90,7 @@ export const AuthProvider = ({ children }) => {
         return { success: false, error: 'No pending registration' };
       }
       
-      const newOTP = "123456"; // Fixed OTP for demo
+      const newOTP = "123456";
       pendingUser.otp = newOTP;
       pendingUser.otpExpiry = Date.now() + 300000;
       localStorage.setItem('pendingUser', JSON.stringify(pendingUser));
@@ -113,7 +106,6 @@ export const AuthProvider = ({ children }) => {
   // Login
   const login = async (email, password) => {
     try {
-      // Check if user exists in localStorage
       const storedUser = localStorage.getItem('user');
       if (storedUser) {
         const user = JSON.parse(storedUser);
@@ -123,7 +115,6 @@ export const AuthProvider = ({ children }) => {
         }
       }
       
-      // Demo login for testing - ANY email/password works
       if (email && password) {
         const demoUser = { email, name: email.split('@')[0], id: Date.now() };
         setUser(demoUser);
@@ -209,3 +200,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export default AuthProvider;

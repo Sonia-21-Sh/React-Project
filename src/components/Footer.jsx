@@ -127,7 +127,7 @@ const Footer = () => {
           <motion.div variants={itemVariants}>
             <h4 className="font-semibold text-lg mb-4">Support</h4>
             <ul className="space-y-3 text-gray-400">
-              <li><a href="/help" className="hover:text-white transition">Help Center</a></li>
+              <li><Link to="/help" className="hover:text-white transition">Help Center</Link></li>
               <li><Link to="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
               <li><Link to="/terms" className="hover:text-white transition">Terms of Service</Link></li>
               <li><Link to="/faq" className="hover:text-white transition">FAQ</Link></li>

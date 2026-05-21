@@ -5,14 +5,13 @@ import { useAuth } from '../contexts/AuthContext';
 import { 
   FiHome, FiFileText, FiCpu, FiHelpCircle, FiCheckSquare, 
   FiActivity, FiSettings, FiLogOut, FiMenu, FiX,
-  FiBarChart2, FiBookOpen
+  FiCalendar, FiBell, FiAward, FiUser
 } from 'react-icons/fi';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logout } = useAuth();
   const navigate = useNavigate();
-  // Remove unused 'user' variable if not used
 
   const menuItems = [
     { name: 'Dashboard', icon: FiHome, path: '/dashboard' },
@@ -39,9 +38,7 @@ const Sidebar = () => {
   };
 
   return (
-    // Rest of your sidebar code remains same
     <>
-      {/* Animated Hamburger Menu Button */}
       <motion.button
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -69,7 +66,6 @@ const Sidebar = () => {
         </div>
       </motion.button>
 
-      {/* Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -83,7 +79,6 @@ const Sidebar = () => {
         )}
       </AnimatePresence>
 
-      {/* Sidebar Panel */}
       <AnimatePresence>
         {isOpen && (
           <motion.aside

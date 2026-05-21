@@ -11,11 +11,7 @@ export const useStudents = () => {
   const [selectedCourse, setSelectedCourse] = useState('all');
   const [sortBy, setSortBy] = useState('name');
 
-  // Fetch all students
-  useEffect(() => {
-    loadStudents();
-  }, []);
-
+  // Load students function
   const loadStudents = async () => {
     try {
       setLoading(true);
@@ -30,6 +26,11 @@ export const useStudents = () => {
       setLoading(false);
     }
   };
+
+  // Initial load
+  useEffect(() => {
+    loadStudents();
+  }, []);
 
   // Filter and sort students
   useEffect(() => {
@@ -49,12 +50,13 @@ export const useStudents = () => {
     }
 
     // Sort
-    result.sort((a, b) => {
-      if (sortBy === 'name') return a.name.localeCompare(b.name);
-      if (sortBy === 'progress') return b.progress - a.progress;
-      if (sortBy === 'course') return a.course.localeCompare(b.course);
-      return 0;
-    });
+    if (sortBy === 'name') {
+      result.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === 'progress') {
+      result.sort((a, b) => b.progress - a.progress);
+    } else if (sortBy === 'course') {
+      result.sort((a, b) => a.course.localeCompare(b.course));
+    }
 
     setFilteredStudents(result);
   }, [students, searchTerm, selectedCourse, sortBy]);
@@ -83,11 +85,10 @@ export const useStudentDetails = (id) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    loadStudent();
-  }, [id]);
-
+  // Load student details function
   const loadStudent = async () => {
+    if (!id) return;
+    
     try {
       setLoading(true);
       setError(null);
@@ -101,5 +102,15 @@ export const useStudentDetails = (id) => {
     }
   };
 
-  return { student, loading, error, refreshStudent: loadStudent };
+  // Load student when id changes
+  useEffect(() => {
+    loadStudent();
+  }, [id]);
+
+  return { 
+    student, 
+    loading, 
+    error, 
+    refreshStudent: loadStudent 
+  };
 };
