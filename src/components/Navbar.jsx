@@ -46,16 +46,16 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg py-2 sm:py-3'
-            : 'bg-transparent py-3 sm:py-5'
+            ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg py-2'
+            : 'bg-transparent py-3'
         }`}
       >
-        <div className="container mx-auto px-3 sm:px-4 md:px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/">
+            <Link to="/" className="z-50">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -66,7 +66,7 @@ const Navbar = () => {
             </Link>
 
             {/* Desktop Navigation - Hidden on mobile */}
-            <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
+            <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
               {navLinks.map((link) => (
                 <Link key={link.path} to={link.path}>
                   <motion.span
@@ -97,10 +97,10 @@ const Navbar = () => {
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                     className="flex items-center space-x-2 focus:outline-none group"
                   >
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-semibold shadow-lg group-hover:shadow-xl transition text-sm sm:text-base">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-semibold shadow-lg group-hover:shadow-xl transition text-sm">
                       {user.name ? user.name[0].toUpperCase() : 'U'}
                     </div>
-                    <span className="text-gray-700 dark:text-gray-300 font-medium text-sm sm:text-base hidden sm:inline">
+                    <span className="text-gray-700 dark:text-gray-300 font-medium text-sm hidden sm:inline-block">
                       {user.name || user.email?.split('@')[0]}
                     </span>
                   </motion.button>
@@ -111,45 +111,38 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute right-0 mt-2 w-48 sm:w-56 bg-white dark:bg-gray-800 rounded-xl shadow-2xl py-2 z-50 border border-gray-100 dark:border-gray-700"
+                      className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-2xl py-2 z-50 border border-gray-100 dark:border-gray-700"
                     >
                       <Link to="/dashboard">
-                        <motion.button
-                          whileHover={{ x: 5 }}
-                          className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-3 transition text-sm sm:text-base"
-                        >
+                        <button className="w-full px-4 py-2 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-3 transition text-sm">
                           <FiUser size={16} />
                           <span>Dashboard</span>
-                        </motion.button>
+                        </button>
                       </Link>
                       <Link to="/profile">
-                        <motion.button
-                          whileHover={{ x: 5 }}
-                          className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-3 transition text-sm sm:text-base"
-                        >
+                        <button className="w-full px-4 py-2 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-3 transition text-sm">
                           <FiUser size={16} />
                           <span>My Profile</span>
-                        </motion.button>
+                        </button>
                       </Link>
                       <div className="border-t border-gray-200 dark:border-gray-700 my-1"></div>
-                      <motion.button
-                        whileHover={{ x: 5 }}
+                      <button
                         onClick={handleLogout}
-                        className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center space-x-3 transition text-sm sm:text-base"
+                        className="w-full px-4 py-2 text-left text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center space-x-3 transition text-sm"
                       >
                         <FiLogOut size={16} />
                         <span>Logout</span>
-                      </motion.button>
+                      </button>
                     </motion.div>
                   )}
                 </div>
               ) : (
-                <div className="flex items-center space-x-2 sm:space-x-4">
+                <div className="flex items-center space-x-3">
                   <Link to="/login">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="px-3 sm:px-5 py-1.5 sm:py-2 rounded-xl text-purple-600 border border-purple-600 hover:bg-purple-600 hover:text-white transition-all duration-300 font-medium text-sm sm:text-base"
+                      className="px-4 py-1.5 rounded-xl text-purple-600 border border-purple-600 hover:bg-purple-600 hover:text-white transition-all duration-300 font-medium text-sm"
                     >
                       Login
                     </motion.button>
@@ -158,7 +151,7 @@ const Navbar = () => {
                     <motion.button
                       whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(139, 92, 246, 0.4)" }}
                       whileTap={{ scale: 0.95 }}
-                      className="px-3 sm:px-5 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium hover:shadow-lg transition-all duration-300 text-sm sm:text-base"
+                      className="px-4 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium hover:shadow-lg transition-all duration-300 text-sm"
                     >
                       Sign Up
                     </motion.button>
@@ -171,35 +164,40 @@ const Navbar = () => {
                 whileHover={{ scale: 1.1, rotate: 180 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleDarkMode}
-                className="p-1.5 sm:p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-all duration-300 hover:shadow-md"
+                className="p-1.5 rounded-full bg-gray-200 dark:bg-gray-700 transition-all duration-300 hover:shadow-md"
               >
                 {darkMode ? <FiSun className="text-yellow-400" size={16} /> : <FiMoon className="text-gray-700" size={16} />}
               </motion.button>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - 3 lines */}
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-xl bg-gray-200 dark:bg-gray-700 transition-all"
+              className="md:hidden p-2 rounded-xl bg-gray-200 dark:bg-gray-700 transition-all z-50"
             >
               {mobileMenuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
             </motion.button>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu - Slide from top */}
           <motion.div
             initial={false}
-            animate={{ height: mobileMenuOpen ? 'auto' : 0, opacity: mobileMenuOpen ? 1 : 0 }}
+            animate={{ 
+              height: mobileMenuOpen ? 'auto' : 0,
+              opacity: mobileMenuOpen ? 1 : 0,
+              visibility: mobileMenuOpen ? 'visible' : 'hidden'
+            }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden"
+            className="md:hidden overflow-hidden bg-white dark:bg-gray-900 rounded-2xl mt-3 shadow-xl"
           >
-            <div className="pt-4 pb-3 space-y-2">
+            <div className="py-3 space-y-1">
               {navLinks.map((link) => (
                 <Link key={link.path} to={link.path}>
                   <motion.div
                     whileHover={{ x: 10 }}
-                    className={`py-3 px-4 rounded-xl transition-all ${
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`py-3 px-4 mx-2 rounded-xl transition-all ${
                       location.pathname === link.path
                         ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
                         : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
@@ -209,54 +207,58 @@ const Navbar = () => {
                   </motion.div>
                 </Link>
               ))}
-              {!user && (
-                <>
-                  <Link to="/login">
-                    <div className="py-3 px-4 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+              <div className="border-t border-gray-200 dark:border-gray-700 my-2 mx-2"></div>
+              {!user ? (
+                <div className="space-y-2 px-2">
+                  <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+                    <div className="py-2.5 px-4 rounded-xl border border-purple-600 text-purple-600 text-center font-medium">
                       Login
                     </div>
                   </Link>
-                  <Link to="/signup">
-                    <div className="py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white text-center font-medium">
+                  <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
+                    <div className="py-2.5 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white text-center font-medium">
                       Sign Up
                     </div>
                   </Link>
-                </>
-              )}
-              {user && (
-                <>
-                  <Link to="/dashboard">
+                </div>
+              ) : (
+                <div className="space-y-1 px-2">
+                  <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>
                     <div className="py-3 px-4 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
                       Dashboard
                     </div>
                   </Link>
-                  <Link to="/profile">
+                  <Link to="/profile" onClick={() => setMobileMenuOpen(false)}>
                     <div className="py-3 px-4 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
                       My Profile
                     </div>
                   </Link>
                   <button
-                    onClick={handleLogout}
+                    onClick={() => {
+                      handleLogout();
+                      setMobileMenuOpen(false);
+                    }}
                     className="w-full py-3 px-4 rounded-xl text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 text-left transition"
                   >
                     Logout
                   </button>
-                </>
+                </div>
               )}
+              <div className="border-t border-gray-200 dark:border-gray-700 my-2 mx-2"></div>
               <button
                 onClick={toggleDarkMode}
-                className="w-full py-3 px-4 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 flex items-center gap-2 transition"
+                className="w-full py-3 px-6 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 flex items-center justify-between transition mx-2"
               >
-                {darkMode ? <FiSun /> : <FiMoon />}
                 <span>{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
+                {darkMode ? <FiSun /> : <FiMoon />}
               </button>
             </div>
           </motion.div>
         </div>
       </motion.nav>
       
-      {/* Spacer for fixed navbar */}
-      <div className="h-14 sm:h-16"></div>
+      {/* Spacer for fixed navbar - Prevents content overlap */}
+      <div className="h-16 sm:h-16 md:h-16"></div>
     </>
   );
 };
