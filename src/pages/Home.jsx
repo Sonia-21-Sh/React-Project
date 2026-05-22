@@ -4,25 +4,20 @@ import { Link } from 'react-router-dom';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float, Text3D, Sparkles, Center } from '@react-three/drei';
 import { FiArrowRight, FiCpu, FiUsers, FiAward, FiTrendingUp, FiShield } from 'react-icons/fi';
-import { TypeAnimation } from 'react-type-animation'; // Make sure to install: npm i react-type-animation
+import { TypeAnimation } from 'react-type-animation';
 
-// 3D Text Component
 const Animated3DText = () => {
   return (
     <group>
-      <Float
-        speed={2.5} // Thoda fast aur dynamic floating
-        rotationIntensity={0.8}
-        floatIntensity={1.5}
-      >
+      <Float speed={2.5} rotationIntensity={0.8} floatIntensity={1.5}>
         <Center>
           <Text3D
             font="https://threejs.org/examples/fonts/helvetiker_regular.typeface.json"
-            size={0.55}
-            height={0.15}
+            size={0.4}
+            height={0.1}
             curveSegments={32}
             bevelEnabled
-            bevelThickness={0.04}
+            bevelThickness={0.03}
             bevelSize={0.02}
             bevelSegments={8}
           >
@@ -37,8 +32,6 @@ const Animated3DText = () => {
           </Text3D>
         </Center>
       </Float>
-      
-      {/* Dynamic Glow lighting */}
       <pointLight position={[3, 3, 3]} intensity={1.5} color="#8b5cf6" />
       <pointLight position={[-3, -2, -2]} intensity={0.8} color="#ec4899" />
     </group>
@@ -57,7 +50,6 @@ const Home = () => {
     { icon: FiShield, title: 'Secure Learning', desc: 'Safe and secure environment for all learners', color: 'from-indigo-500 to-purple-500' },
   ];
 
-  // Framer Motion Variants for Smooth Stagger Animation
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -73,41 +65,27 @@ const Home = () => {
 
   return (
     <div className="overflow-hidden bg-gray-950 text-white">
-      {/* Hero Section with 3D */}
+      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center">
-        {/* 3D Canvas Background */}
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-950 via-slate-900 to-purple-950">
           <Canvas camera={{ position: [0, 0, 4.5], fov: 45 }}>
             <ambientLight intensity={0.4} />
             <Animated3DText />
-            <Sparkles 
-              count={250} 
-              scale={12} 
-              size={0.4} 
-              speed={0.5} 
-              color="#c084fc"
-            />
-            <OrbitControls 
-              enableZoom={false} 
-              autoRotate 
-              autoRotateSpeed={1.2} 
-              enablePan={false}
-            />
+            <Sparkles count={200} scale={10} size={0.3} speed={0.5} color="#c084fc" />
+            <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.8} enablePan={false} />
           </Canvas>
         </div>
         
-        {/* Content Overlay */}
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20 sm:mt-0">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
-            {/* Attractive Typing Animation Header */}
             <motion.h1 
               variants={itemVariants}
-              className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight min-h-[120px] sm:min-h-[auto]"
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight"
             >
               Welcome to <br className="sm:hidden" />
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent block sm:inline">
@@ -129,30 +107,30 @@ const Home = () => {
             
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed px-2"
             >
               Experience the future of education with an AI-powered 3D interactive learning platform designed for modern minds.
             </motion.p>
             
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-4 px-4"
             >
-              <Link to="/signup">
+              <Link to="/signup" className="w-full sm:w-auto">
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(168, 85, 247, 0.6)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-700 rounded-full text-white font-bold text-lg shadow-2xl flex items-center justify-center gap-2 group transition-all"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-700 rounded-full text-white font-bold text-base sm:text-lg shadow-2xl flex items-center justify-center gap-2 group transition-all"
                 >
                   Get Started Free
                   <FiArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />
                 </motion.button>
               </Link>
-              <Link to="/features">
+              <Link to="/features" className="w-full sm:w-auto">
                 <motion.button
                   whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.15)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-8 py-4 bg-white/5 backdrop-blur-md border border-white/20 rounded-full text-white font-semibold text-lg transition-all"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/5 backdrop-blur-md border border-white/20 rounded-full text-white font-semibold text-base sm:text-lg transition-all"
                 >
                   Explore Features
                 </motion.button>
@@ -161,27 +139,26 @@ const Home = () => {
           </motion.div>
         </div>
         
-        {/* Modernized Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2"
         >
-          <div className="w-6 h-10 border-2 border-purple-400/50 rounded-full flex justify-center p-1">
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-purple-400/50 rounded-full flex justify-center p-1">
             <motion.div
-              animate={{ y: [0, 16, 0] }}
+              animate={{ y: [0, 12, 0] }}
               transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-              className="w-1.5 h-1.5 bg-purple-400 rounded-full"
+              className="w-1 h-1.5 sm:w-1.5 sm:h-2 bg-purple-400 rounded-full"
             />
           </div>
         </motion.div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 relative bg-slate-900/60 border-y border-white/5 backdrop-blur-sm">
+      {/* Stats Section - Responsive */}
+      <section className="py-12 sm:py-16 md:py-20 relative bg-slate-900/60 border-y border-white/5 backdrop-blur-sm">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8">
             {[
               { number: '50K+', label: 'Active Students' },
               { number: '500+', label: 'Interactive Courses' },
@@ -196,34 +173,34 @@ const Home = () => {
                 transition={{ delay: index * 0.15, type: "spring" }}
                 className="text-center"
               >
-                <h3 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
                   {stat.number}
                 </h3>
-                <p className="text-gray-400 font-medium mt-2 tracking-wide uppercase text-xs sm:text-sm">{stat.label}</p>
+                <p className="text-gray-400 font-medium mt-1 sm:mt-2 tracking-wide uppercase text-[10px] sm:text-xs md:text-sm">{stat.label}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section ref={featuresRef} className="py-24 relative bg-gray-950">
+      {/* Features Section - Responsive Grid */}
+      <section ref={featuresRef} className="py-16 sm:py-20 md:py-24 relative bg-gray-950">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isFeaturesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 tracking-tight px-2">
               Why Choose <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">3D Learn Hub</span>?
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-light px-4">
               Discover next-gen features that make us the ultimate study hub for global learners.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
@@ -232,19 +209,14 @@ const Home = () => {
                   initial={{ opacity: 0, y: 40 }}
                   animate={isFeaturesInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: index * 0.12, duration: 0.6, ease: "easeOut" }}
-                  whileHover={{ 
-                    y: -12, 
-                    scale: 1.03,
-                    borderColor: "rgba(168, 85, 247, 0.4)",
-                    boxShadow: "0 20px 40px -15px rgba(139, 92, 246, 0.15)"
-                  }}
-                  className="bg-slate-900/40 backdrop-blur-md rounded-2xl p-8 border border-white/5 transition-all duration-300"
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="bg-slate-900/40 backdrop-blur-md rounded-2xl p-5 sm:p-6 md:p-8 border border-white/5 transition-all duration-300"
                 >
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6 shadow-lg`}>
-                    <Icon className="text-white text-2xl" />
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-r ${feature.color} flex items-center justify-center mb-4 sm:mb-6 shadow-lg`}>
+                    <Icon className="text-white text-xl sm:text-2xl" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 tracking-wide">{feature.title}</h3>
-                  <p className="text-gray-400 leading-relaxed font-light">{feature.desc}</p>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 tracking-wide">{feature.title}</h3>
+                  <p className="text-gray-400 leading-relaxed font-light text-sm sm:text-base">{feature.desc}</p>
                 </motion.div>
               );
             })}
@@ -252,8 +224,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-r from-purple-900 via-indigo-950 to-pink-900">
+      {/* CTA Section - Responsive */}
+      <section className="py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-r from-purple-900 via-indigo-950 to-pink-900">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.4))]"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
@@ -261,12 +233,12 @@ const Home = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto space-y-6"
+            className="max-w-3xl mx-auto space-y-4 sm:space-y-6"
           >
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight px-2">
               Ready to Start Your Learning Journey?
             </h2>
-            <p className="text-purple-200/80 text-xl font-light max-w-xl mx-auto">
+            <p className="text-purple-200/80 text-base sm:text-lg md:text-xl font-light max-w-xl mx-auto px-4">
               Join thousands of students already expanding their minds in the Student Study Hub.
             </p>
             <div className="pt-4">
@@ -274,7 +246,7 @@ const Home = () => {
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.3)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-10 py-4 bg-white text-purple-950 font-extrabold text-lg rounded-full hover:bg-purple-50 transition shadow-2xl"
+                  className="px-8 sm:px-10 py-3 sm:py-4 bg-white text-purple-950 font-extrabold text-base sm:text-lg rounded-full hover:bg-purple-50 transition shadow-2xl"
                 >
                   Start Learning Now
                 </motion.button>

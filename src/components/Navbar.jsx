@@ -48,30 +48,30 @@ const Navbar = () => {
         transition={{ duration: 0.5, type: 'spring', stiffness: 100 }}
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg py-3'
-            : 'bg-transparent py-5'
+            ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg py-2 sm:py-3'
+            : 'bg-transparent py-3 sm:py-5'
         }`}
       >
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6">
           <div className="flex items-center justify-between">
-            {/* Logo with hover animation */}
+            {/* Logo */}
             <Link to="/">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-2xl md:text-3xl font-bold cursor-pointer"
+                className="text-xl sm:text-2xl md:text-3xl font-bold cursor-pointer"
               >
                 <span className="gradient-text">3D Learn</span>
               </motion.div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            {/* Desktop Navigation - Hidden on mobile */}
+            <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
               {navLinks.map((link) => (
                 <Link key={link.path} to={link.path}>
                   <motion.span
                     whileHover={{ scale: 1.05 }}
-                    className={`relative cursor-pointer transition-colors duration-300 ${
+                    className={`relative cursor-pointer transition-colors duration-300 text-sm lg:text-base ${
                       location.pathname === link.path
                         ? 'text-purple-600 dark:text-purple-400 font-semibold'
                         : 'text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'
@@ -97,10 +97,10 @@ const Navbar = () => {
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                     className="flex items-center space-x-2 focus:outline-none group"
                   >
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-semibold shadow-lg group-hover:shadow-xl transition">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-semibold shadow-lg group-hover:shadow-xl transition text-sm sm:text-base">
                       {user.name ? user.name[0].toUpperCase() : 'U'}
                     </div>
-                    <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    <span className="text-gray-700 dark:text-gray-300 font-medium text-sm sm:text-base hidden sm:inline">
                       {user.name || user.email?.split('@')[0]}
                     </span>
                   </motion.button>
@@ -111,12 +111,12 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-2xl py-2 z-50 border border-gray-100 dark:border-gray-700"
+                      className="absolute right-0 mt-2 w-48 sm:w-56 bg-white dark:bg-gray-800 rounded-xl shadow-2xl py-2 z-50 border border-gray-100 dark:border-gray-700"
                     >
                       <Link to="/dashboard">
                         <motion.button
                           whileHover={{ x: 5 }}
-                          className="w-full px-4 py-2.5 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-3 transition"
+                          className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-3 transition text-sm sm:text-base"
                         >
                           <FiUser size={16} />
                           <span>Dashboard</span>
@@ -125,7 +125,7 @@ const Navbar = () => {
                       <Link to="/profile">
                         <motion.button
                           whileHover={{ x: 5 }}
-                          className="w-full px-4 py-2.5 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-3 transition"
+                          className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center space-x-3 transition text-sm sm:text-base"
                         >
                           <FiUser size={16} />
                           <span>My Profile</span>
@@ -135,7 +135,7 @@ const Navbar = () => {
                       <motion.button
                         whileHover={{ x: 5 }}
                         onClick={handleLogout}
-                        className="w-full px-4 py-2.5 text-left text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center space-x-3 transition"
+                        className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center space-x-3 transition text-sm sm:text-base"
                       >
                         <FiLogOut size={16} />
                         <span>Logout</span>
@@ -144,12 +144,12 @@ const Navbar = () => {
                   )}
                 </div>
               ) : (
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2 sm:space-x-4">
                   <Link to="/login">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="px-5 py-2 rounded-xl text-purple-600 border border-purple-600 hover:bg-purple-600 hover:text-white transition-all duration-300 font-medium"
+                      className="px-3 sm:px-5 py-1.5 sm:py-2 rounded-xl text-purple-600 border border-purple-600 hover:bg-purple-600 hover:text-white transition-all duration-300 font-medium text-sm sm:text-base"
                     >
                       Login
                     </motion.button>
@@ -158,7 +158,7 @@ const Navbar = () => {
                     <motion.button
                       whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(139, 92, 246, 0.4)" }}
                       whileTap={{ scale: 0.95 }}
-                      className="px-5 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium hover:shadow-lg transition-all duration-300"
+                      className="px-3 sm:px-5 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium hover:shadow-lg transition-all duration-300 text-sm sm:text-base"
                     >
                       Sign Up
                     </motion.button>
@@ -166,28 +166,28 @@ const Navbar = () => {
                 </div>
               )}
               
-              {/* Dark Mode Toggle with Animation */}
+              {/* Dark Mode Toggle */}
               <motion.button
                 whileHover={{ scale: 1.1, rotate: 180 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleDarkMode}
-                className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-all duration-300 hover:shadow-md"
+                className="p-1.5 sm:p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-all duration-300 hover:shadow-md"
               >
-                {darkMode ? <FiSun className="text-yellow-400" size={20} /> : <FiMoon className="text-gray-700" size={20} />}
+                {darkMode ? <FiSun className="text-yellow-400" size={16} /> : <FiMoon className="text-gray-700" size={16} />}
               </motion.button>
             </div>
 
-            {/* Mobile Menu Button with Animation */}
+            {/* Mobile Menu Button */}
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 rounded-xl bg-gray-200 dark:bg-gray-700 transition-all"
             >
-              {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+              {mobileMenuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
             </motion.button>
           </div>
 
-          {/* Mobile Menu with Slide Animation */}
+          {/* Mobile Menu */}
           <motion.div
             initial={false}
             animate={{ height: mobileMenuOpen ? 'auto' : 0, opacity: mobileMenuOpen ? 1 : 0 }}
@@ -256,7 +256,7 @@ const Navbar = () => {
       </motion.nav>
       
       {/* Spacer for fixed navbar */}
-      <div className="h-16"></div>
+      <div className="h-14 sm:h-16"></div>
     </>
   );
 };

@@ -24,7 +24,6 @@ const StudentCard = ({ student, index }) => {
     }
   };
 
-  // Fallback avatar if image fails to load
   const fallbackAvatar = `https://ui-avatars.com/api/?name=${student.name.replace(/ /g, '+')}&background=8b5cf6&color=fff&bold=true&size=128`;
 
   return (
@@ -32,65 +31,54 @@ const StudentCard = ({ student, index }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5, type: 'spring' }}
-      whileHover={{ 
-        y: -10,
-        scale: 1.02,
-        transition: { duration: 0.2 }
-      }}
-      className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 relative"
+      whileHover={{ y: -8, scale: 1.02 }}
+      className="group bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 relative"
     >
-      {/* Status Indicator */}
-      <div className="absolute top-4 right-4 z-10">
-        <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-full">
-          <div className={`w-2 h-2 rounded-full ${getStatusColor(student.status)} animate-pulse`}></div>
-          <span className="text-xs text-white">{getStatusText(student.status)}</span>
+      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
+        <div className="flex items-center gap-1 bg-black/50 backdrop-blur-sm px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full">
+          <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${getStatusColor(student.status)} animate-pulse`}></div>
+          <span className="text-[10px] sm:text-xs text-white">{getStatusText(student.status)}</span>
         </div>
       </div>
 
-      <div className="p-6">
-        {/* Profile Section with Image */}
-        <div className="flex items-center gap-4 mb-4">
-          <motion.div
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            className="relative group/image"
-          >
+      <div className="p-4 sm:p-5 md:p-6">
+        <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+          <motion.div whileHover={{ scale: 1.1, rotate: 5 }} className="relative">
             <img
               src={imageError ? fallbackAvatar : student.avatar}
               alt={student.name}
               onError={() => setImageError(true)}
-              className="w-16 h-16 rounded-full object-cover border-3 border-purple-500 shadow-lg bg-gray-200 dark:bg-gray-700"
+              className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full object-cover border-2 sm:border-3 border-purple-500 shadow-lg bg-gray-200 dark:bg-gray-700"
             />
-            <div className="absolute -bottom-1 -right-1 bg-green-500 rounded-full p-1 ring-2 ring-white dark:ring-gray-800">
-              <FiCheckCircle size={12} className="text-white" />
+            <div className="absolute -bottom-1 -right-1 bg-green-500 rounded-full p-0.5 sm:p-1 ring-2 ring-white dark:ring-gray-800">
+              <FiCheckCircle size={10} className="text-white" />
             </div>
           </motion.div>
           
-          <div className="flex-1">
-            <h3 className="font-bold text-lg text-gray-800 dark:text-white group-hover:text-purple-600 transition line-clamp-1">
+          <div className="flex-1 min-w-0">
+            <h3 className="font-bold text-sm sm:text-base md:text-lg text-gray-800 dark:text-white group-hover:text-purple-600 transition truncate">
               {student.name}
             </h3>
-            <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
-              <FiMail size={14} />
+            <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-500 dark:text-gray-400 truncate">
+              <FiMail size={12} className="flex-shrink-0" />
               <span className="truncate">{student.email}</span>
             </div>
           </div>
         </div>
 
-        {/* Course Info */}
-        <div className="mb-4">
-          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 mb-2">
-            <FiBookOpen size={16} className="text-purple-500" />
-            <span className="font-medium line-clamp-1">{student.course}</span>
+        <div className="mb-3 sm:mb-4">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-1 sm:mb-2">
+            <FiBookOpen size={14} className="text-purple-500 flex-shrink-0" />
+            <span className="font-medium truncate">{student.course}</span>
           </div>
         </div>
 
-        {/* Progress Bar */}
-        <div className="mb-4">
-          <div className="flex justify-between text-xs mb-1">
+        <div className="mb-3 sm:mb-4">
+          <div className="flex justify-between text-[10px] sm:text-xs mb-1">
             <span className="text-gray-500">Progress</span>
             <span className="text-purple-600 font-semibold">{student.progress}%</span>
           </div>
-          <div className="overflow-hidden h-2 text-xs flex rounded-full bg-gray-200 dark:bg-gray-700">
+          <div className="overflow-hidden h-1.5 sm:h-2 text-xs flex rounded-full bg-gray-200 dark:bg-gray-700">
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${student.progress}%` }}
@@ -100,15 +88,14 @@ const StudentCard = ({ student, index }) => {
           </div>
         </div>
 
-        {/* View Details Button */}
         <Link to={`/students/${student.id}`}>
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-medium text-sm hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+            className="w-full py-1.5 sm:py-2 md:py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg sm:rounded-xl font-medium text-xs sm:text-sm hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2"
           >
             View Details
-            <FiTrendingUp size={16} className="group-hover:translate-x-1 transition" />
+            <FiTrendingUp size={12} className="group-hover:translate-x-1 transition" />
           </motion.button>
         </Link>
       </div>
